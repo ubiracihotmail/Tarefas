@@ -14,8 +14,13 @@ namespace Tarefas.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
+
+            var filtros  = new Filtros(id);
+
+
+
             return View();
         }
 
