@@ -22,7 +22,6 @@
         public bool TemVencimento => Vencimento.ToLower() != "todos";
         public bool TemStatus => StatusId.ToLower() != "todos";
 
-
         public static Dictionary<string, string> VencimentosValoresFiltro =>
             new Dictionary<string, string>
             {
@@ -30,7 +29,6 @@
                 {"passado", "Passado" },
                 {"hoje", "Hoje" }
             };
-
 
         public bool EPassado => Vencimento.ToLower() == "passado";
         public bool EFuturo => Vencimento.ToLower() == "futuro";
