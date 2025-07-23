@@ -4,15 +4,15 @@
     {
         public Filtros(string filtroString)
         {
-            FiltrosString = filtroString ?? "todos-todos-todos";
-            string[] filtros = FiltrosString.Split('-');
+            FiltroString = filtroString ?? "todos-todos-todos";
+            string[] filtros = FiltroString.Split('-');
 
             CategoriaId = filtros[0];
             Vencimento = filtros[1];
             StatusId = filtros[2];          
         }
 
-        public string FiltrosString { get; set; }
+        public string FiltroString { get; set; }
         public string  CategoriaId { get; set; }
         public string StatusId { get; set; }
         public string Vencimento { get; set; }
@@ -22,7 +22,7 @@
         public bool TemVencimento => Vencimento.ToLower() != "todos";
         public bool TemStatus => StatusId.ToLower() != "todos";
 
-        public static Dictionary<string, string> VencimentosValoresFiltro =>
+        public static Dictionary<string, string> VencimentoValoresFiltro =>
             new Dictionary<string, string>
             {
                 {"futuro", "Futuro" },
