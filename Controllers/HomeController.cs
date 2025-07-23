@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Tarefas.Data;
 using Tarefas.Models;
 
@@ -17,8 +18,47 @@ namespace Tarefas.Controllers
         public IActionResult Index(string id)
         {
 
-            var filtros  = new Filtros(id);
+            var filtros = new Filtros(id);
 
+            ViewBag.Filtros = filtros;
+            ViewBag.Categorias = _context.Categorias.ToList();
+            ViewBag.Status = _context.Statuses.ToList();
+            ViewBag.Vencimento = Filtros.VencimentosValoresFiltro;
+
+            IQueryable<Tarefa> consulta = _context.Tarefas
+                .Include(c => c.Categoria)
+                .Include(c => c.Status);
+
+
+            if (filtros.TemCategoria)
+            {
+                consulta = consulta.Where(t => t.CategoriaId == filtros.CategoriaId);
+            }
+
+            if (filtros.TemStatus)
+            {
+                consulta = consulta.Where(t => t.StatusId == filtros.StatusId);
+            }
+
+            if (filtros.TemVencimento)
+            {
+                var hoje = DateTime.Today;
+
+
+                if (filtros.EPassado)
+                {
+                    consulta = consulta.Where(t => t.DataDeVencimento < hoje);
+                }
+                if (filtros.EFuturo)
+                {
+                    consulta = consulta.Where(t => t.DataDeVencimento > hoje);
+                }
+                if (filtros.EHoje)
+                {
+                    consulta = consulta.Where(t => t.DataDeVencimento == hoje);
+                }
+
+            }
 
 
             return View();
