@@ -17,8 +17,7 @@
         public string StatusId { get; set; }
         public string Vencimento { get; set; }
 
-
-        public bool TemCategoria => CategoriaId.ToLower() != "todos";
+        public bool TemCategoria => !CategoriaId.Equals("todos", StringComparison.CurrentCultureIgnoreCase);
         public bool TemVencimento => Vencimento.ToLower() != "todos";
         public bool TemStatus => StatusId.ToLower() != "todos";
 

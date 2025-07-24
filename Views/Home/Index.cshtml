@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<Tarefa>
 
-
 <div class="row">
         <div class="col-md-2">
 
@@ -11,16 +10,13 @@
                     <select 
                             name="filtro"
                         class="form-select"
-                        asp-item="@(new SelectList(ViewBag.Categorias, "CategoriaId", "Nome", ViewBag.Filtros.CategoriaId))"
-                    >
+                        asp-item="@(new SelectList(ViewBag.Categorias, "CategoriaId", "Nome", 
+                                                   ViewBag.Filtros.CategoriaId))">
                     <option value="todos">Todos</option>
                     </select>
                  </div>
 
-
              </form>
-
-
         </div>
         <div class="col-md-10"></div>
 </div>

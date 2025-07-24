@@ -6,23 +6,23 @@ namespace Tarefas.Models
     public class Tarefa
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required(ErrorMessage = "Preencha a Descrição!")]
-        public string Descricao { get; set; }
+        public string? Descricao { get; set; }
         [Required(ErrorMessage = "Preencha a Data de Vencimento!")]
         public DateTime? DataDeVencimento { get; set; }
         [Required(ErrorMessage = "Selecione uma Categoria!")]
-        public string CategoriaId { get; set; }
+        public string? CategoriaId { get; set; }
 
         [ValidateNever]
-        public Categoria Categoria { get; set; }
+        public Categoria? Categoria { get; set; }
 
         [ValidateNever]
         [Required(ErrorMessage = "Selecione um Status!")]
-        public string StatusId { get; set; }
+        public string? StatusId { get; set; }
 
         [ValidateNever]
-        public Status Status { get; set; }
+        public Status? Status { get; set; }
         public bool Atrasado => StatusId == "aberto" && DataDeVencimento < DateTime.Today;
     }
 }
