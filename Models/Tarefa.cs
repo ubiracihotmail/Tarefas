@@ -22,7 +22,7 @@ namespace Tarefas.Models
         public string StatusId { get; set; }
 
         [ValidateNever]
-        public string Status { get; set; }
+        public Status Status { get; set; }
         public bool Atrasado => StatusId == "aberto" && DataDeVencimento < DateTime.Today;
     }
 }

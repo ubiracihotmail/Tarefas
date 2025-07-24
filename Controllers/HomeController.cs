@@ -26,8 +26,8 @@ namespace Tarefas.Controllers
             ViewBag.Vencimento = Filtros.VencimentoValoresFiltro;
 
             IQueryable<Tarefa> consulta = _context.Tarefas
-                .Include(c => c.Categoria);
-                //.Include(s => s.Status);
+                .Include(c => c.Categoria).
+                 Include(s => s.Status);
 
 
             if (filtros.TemCategoria)
@@ -57,7 +57,6 @@ namespace Tarefas.Controllers
                 {
                     consulta = consulta.Where(t => t.DataDeVencimento == hoje);
                 }
-
             }
 
             var tarefas = consulta.OrderBy(t => t.DataDeVencimento).ToList();
@@ -68,3 +67,4 @@ namespace Tarefas.Controllers
 
     }
 }
+ 

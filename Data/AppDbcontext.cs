@@ -8,7 +8,6 @@ namespace Tarefas.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-
         public DbSet<Tarefa> Tarefas { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Status> Statuses { get; set; }
@@ -28,7 +27,6 @@ namespace Tarefas.Data
                 new Status { StatusId = "aberto", Nome = "Aberto" },
                 new Status { StatusId = "completo", Nome = "Completo" }
             );
-
 
             base.OnModelCreating(modelBuilder);
         }
